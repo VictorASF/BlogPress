@@ -1,0 +1,37 @@
+<%- include('./partials/header.ejs')%>
+
+<body>
+
+    <%- include('./partials/homenavbar.ejs')%>
+    <div class="container mt-3">
+        <div class="jumbotron">
+            <h1 class="display-4">BlogPress</h1>
+            <p class="lead">Site montado utilizando Sequelize para comunicação com o banco e node com express para montagem do servidor web</p>
+            <hr class="my-4">
+            <p class="lead">
+              <a class="btn btn-primary btn-lg" href="#" role="button">Mais detalhes</a>
+            </p>
+          </div>
+        <% articles.forEach(article =>{%>
+
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h2><%= article.title %></h2>
+                </div>
+                <div class='card-body'>
+                    <a href="/articles/<%=article.slug%>" class="btn btn-success">Ler artigo</a>
+                </div>
+            </div>
+
+
+        <%})%>
+        <div class="row">
+            <div class="col col-12">
+                <a style='float:right'class='btn mt-3 btn-primary' href="/articles/page/2">Next</a>
+            </div>
+        </div>
+    <hr>
+    </div>
+</body>
+
+<%- include('./partials/footer.ejs')%>

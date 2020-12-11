@@ -1,0 +1,65 @@
+<%- include('../../partials/header.ejs') %>
+<body>
+    
+    <%- include('../../partials/navbar.ejs') %>
+
+    <div class="container">
+        <hr>
+        <h2>Usuarios</h2><br>
+        <a href="/admin/users/create" class="btn btn-success">Criar novo usuario</a>
+        <hr>
+        <table class='table table-bordered table-hover'>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% users.forEach(user =>{ %>
+                    <tr>
+                        <td><%=user.id%></td>
+                        <td><%=user.name%></td>
+                        <td><%=user.email%></td>
+                        <th>  
+                            <form action="/admin/articles/edit/<%=user.id%>" 
+                            method="GET" 
+                            style = 'display: inline;'
+                            onsubmit="editConfirm(event, this)">
+                                <a href="/admin/articles/edit/<%=user.id%>" class='btn btn-warning'>Editar</a>
+                            </form>
+
+                            <form action="/admin/users/delete" 
+                            method="POST" 
+                            style = 'display: inline;'
+                            onsubmit="deleteConfirm(event, this)">
+
+                                <input type="hidden" name='id' value="<%=user.id%>" >
+                                <button class='btn btn-danger'>Deletar</button>
+                            </form></th>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+    
+</body>
+<%- include('../../partials/footer.ejs') %>
+<script>
+    function deleteConfirm(event,form){
+        event.preventDefault();
+        var decision = confirm('Você quer deletar este artigo?')
+        if(decision){
+            form.submit();
+        }
+    }
+    function editConfirm(event,form){
+        event.preventDefault();
+        var decision = confirm('Você deseja editar este artigo?')
+        if(decision){
+            form.submit();
+        }
+    }
+</script>
