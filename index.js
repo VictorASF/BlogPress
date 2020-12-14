@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const connection = require('./database/database')
 const Category = require('./routers/categories/Category')
 const Article = require('./routers/articles/Article')
+const User = require('./routers/users/User')
 const session = require('express-session')
 
 const router = require('./routers/router')

@@ -28,14 +28,14 @@
                         <th class='btn-group '>  
                             <form action="/admin/articles/edit/<%=article.id%>" 
                             method="GET" 
-                            
+                            style="display: inline;"
                             onsubmit="editConfirm(event, this)">
                                 <a href="/admin/articles/edit/<%=article.id%>" class='btn btn-warning'>Editar</a>
                             </form>
 
                             <form action="/admin/articles/delete" 
                             method="POST" 
-                            
+                            style="display: inline;"
                             onsubmit="deleteConfirm(event, this)">
 
                                 <input type="hidden" name='id' value="<%=article.id%>" >

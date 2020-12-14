@@ -54,6 +54,7 @@ routerArticles.get('/admin/articles/edit/:id', adminAuth, (req,res)=>{
 routerArticles.get('/articles/page/:num', (req,res)=>{
     var page = req.params.num
     var offset = 0
+    var limit = 4
 
     if(isNaN(page) || page == 1){
         offset = 0
@@ -62,13 +63,13 @@ routerArticles.get('/articles/page/:num', (req,res)=>{
     }
 
     Article.findAndCountAll({
-        limit:4,
+        limit: limit,
         order: [["id", "DESC"]],
         offset: offset
     }).then(articles =>{
 
         var next
-        if(offset + 4>= articles.count){
+        if(offset + limit>= articles.count){
             next = false
         }else{
             next = true
@@ -81,7 +82,7 @@ routerArticles.get('/articles/page/:num', (req,res)=>{
         }
 
         Category.findAll().then(categories=>{
-            res.render('admin/articles/page',{result: result, categories: categories})
+            res.render('page.ejs',{result: result, categories: categories})
         })
     })
 

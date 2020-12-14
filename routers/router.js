@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Article = require('./articles/Article')
 const Category = require('./categories/Category')
+const Users = require('./users/User')
 
 const routerCategories = require('./categories/CategoriesController')
 const routerArticles = require('./articles/ArticlesController')
